@@ -1,10 +1,10 @@
 const childProcess = require('child_process')
 const fs = require('fs')
 const path = require('path')
+const config = require('../../config')
 const { parseKeymap } = require('./keymap')
 
-const ZMK_PATH = path.join(__dirname, '..', '..', '..', 'zmk-config')
-const KEYBOARD = 'dactyl'
+const ZMK_PATH = config.ZMK_CONFIG_PATH
 
 const EMPTY_KEYMAP = {
   keyboard: 'unknown',

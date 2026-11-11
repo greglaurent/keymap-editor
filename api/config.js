@@ -1,26 +1,19 @@
+const path = require('path')
 const process = require('process')
 require('dotenv/config')
 
 const PORT = process.env.PORT || 8080
+// Loopback only by default; the Docker image sets 0.0.0.0 (compose publishes
+// the port on this computer only).
+const HOST = process.env.HOST || '127.0.0.1'
 const ENABLE_DEV_SERVER = process.env.ENABLE_DEV_SERVER
-const ENABLE_GITHUB = process.env.ENABLE_GITHUB
-const GITHUB_APP_NAME = process.env.GITHUB_APP_NAME
-const GITHUB_APP_PRIVATE_KEY = process.env.GITHUB_APP_PRIVATE_KEY
-const GITHUB_APP_ID = process.env.GITHUB_APP_ID
-const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID
-const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET
-const GITHUB_OAUTH_CALLBACK_URL = process.env.GITHUB_OAUTH_CALLBACK_URL
-const APP_BASE_URL = process.env.APP_BASE_URL
+// Local zmk-config repo to read and write. Relative paths resolve against the
+// directory the server is started from.
+const ZMK_CONFIG_PATH = path.resolve(process.env.ZMK_CONFIG_PATH || '../zmk-config')
 
 module.exports = {
   PORT,
+  HOST,
   ENABLE_DEV_SERVER,
-  ENABLE_GITHUB,
-  GITHUB_APP_NAME,
-  GITHUB_APP_PRIVATE_KEY,
-  GITHUB_APP_ID,
-  GITHUB_CLIENT_ID,
-  GITHUB_CLIENT_SECRET,
-  GITHUB_OAUTH_CALLBACK_URL,
-  APP_BASE_URL
+  ZMK_CONFIG_PATH
 }

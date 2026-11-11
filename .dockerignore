@@ -1,0 +1,10 @@
+.git
+.direnv
+.env
+node_modules
+app/node_modules
+app/build
+zmk-config
+screenshots
+*.mov
+**/*.swp

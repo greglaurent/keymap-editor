@@ -85,3 +85,7 @@ zmk-config
 
 private-key.pem
 .env
+# Nix and direnv.
+.direnv/
+result
+result-*

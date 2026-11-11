@@ -1,0 +1,18 @@
+# Runs the editor in Docker against a zmk-config repo on this computer.
+# `just up` (or `docker compose up -d --build`); then open
+# http://localhost:${PORT:-8080}. For development use `just dev` instead.
+services:
+  keymap-editor:
+    build: .
+    restart: unless-stopped
+    # Lets Ctrl-C and `docker stop` end Node immediately.
+    init: true
+    # Run as the host user so saved files are owned by you.
+    user: "${LOCAL_UID:-1000}:${LOCAL_GID:-1000}"
+    environment:
+      PORT: "8080"
+    volumes:
+      - "${ZMK_CONFIG_PATH:-../zmk-config}:/zmk-config"
+    # This computer only, not the network.
+    ports:
+      - "127.0.0.1:${PORT:-8080}:8080"
