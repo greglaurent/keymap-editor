@@ -12,17 +12,14 @@ ZMK's documentation to make full use of it.
 
 ## Features
 
-* WYSIWYG keymap editing
-* [Dark mode](./screenshots/editor-screenshot-darkmode.png)
-* Conditional layers
-* [Combo editing](./screenshots/editor-screenshot-combos.png)
-* [Macro editing](./screenshots/editor-screenshot-macros.png) (including parameterized macros)
-* Behavior editing (creation and re-configuration)
-* Auto-generated layouts for ZMK's supported keyboards\*
-* Rotary encoders
-* Multiple keymaps
+This is the upstream Keymap Editor's prebuilt web app (in `web/`) without its
+GitHub integration, served by a small local server that reads and writes the
+`.keymap` files of a zmk-config repo on this computer:
 
-<sub>\*_Auto-generated layouts are a starting point and may need customization._</sub>
+* Layers, conditional layers, combos, macros and behaviors
+* Rotary encoder (sensor) bindings
+* Layouts for the keyboards ZMK supports
+* Dark and light themes
 
 ## Usage
 
@@ -31,8 +28,8 @@ This runs only on your own machine and edits a local zmk-config repo. See
 
 1. `direnv allow` (or `nix develop path:.`) for the pinned tools.
 2. `just setup`, then set `ZMK_CONFIG_PATH` in `.env`.
-3. `just dev` (open `http://localhost:3000`) or `just up` for Docker
-   (open `http://localhost:8080`).
+3. `just start` (or `just dev`, which restarts on code changes), or `just up`
+   for Docker. Open `http://localhost:4710`. The port is `PORT` in `.env`.
 
 Firmware builds are out of scope: commit the saved files and build and flash
 with your usual ZMK setup.

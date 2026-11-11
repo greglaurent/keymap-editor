@@ -4,18 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "cd app && npm install",
     "start": "node index.js",
-    "dev": "ENABLE_DEV_SERVER=true node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --watch index.js",
+    "test": "node --test \"api/**/*.test.js\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "lodash": "^4.17.21",
     "morgan": "^1.10.0"
   }
 }

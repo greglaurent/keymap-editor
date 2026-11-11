@@ -1,6 +1,6 @@
 # Runs the editor in Docker against a zmk-config repo on this computer.
 # `just up` (or `docker compose up -d --build`); then open
-# http://localhost:${PORT:-8080}. For development use `just dev` instead.
+# http://localhost:${PORT:-4710}. For development use `just dev` instead.
 services:
   keymap-editor:
     build: .
@@ -15,4 +15,4 @@ services:
       - "${ZMK_CONFIG_PATH:-../zmk-config}:/zmk-config"
     # This computer only, not the network.
     ports:
-      - "127.0.0.1:${PORT:-8080}:8080"
+      - "127.0.0.1:${PORT:-4710}:8080"

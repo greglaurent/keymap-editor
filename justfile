@@ -14,18 +14,17 @@ setup:
 install:
     npm install
 
-# Development: the API plus the React dev server (open http://localhost:3000).
+# Run the editor with auto-restart on changes (http://localhost:${PORT:-4710}).
 dev: setup
     npm run dev
 
-# Build the React app into app/build.
-[working-directory: 'app']
-build:
-    npm run build
-
-# Run the API and the built app (http://localhost:8080) without Docker.
-start: setup build
+# Run the editor (http://localhost:${PORT:-4710}).
+start: setup
     npm start
+
+# Run the tests.
+test:
+    npm test
 
 # --- docker compose ---
 

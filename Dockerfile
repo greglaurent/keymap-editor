@@ -1,16 +1,4 @@
-# ---- web: build the React app into static files ----
-FROM node:22-bookworm-slim AS web
-WORKDIR /src/app
-COPY app/package.json app/package-lock.json ./
-RUN npm ci
-COPY app/index.html app/vite.config.js ./
-COPY app/public ./public
-COPY app/src ./src
-# Same origin as the API: an empty base URL makes the app call relative paths.
-ENV VITE_API_BASE_URL=""
-RUN npm run build
-
-# ---- runtime: the API, which also serves the built app ----
+# ---- runtime: the API, which also serves the prebuilt editor in web/ ----
 FROM node:22-bookworm-slim
 # git: saving runs `git status` in the mounted zmk-config repo.
 RUN apt-get update \
@@ -23,7 +11,7 @@ COPY package.json package-lock.json ./
 RUN npm ci --omit=dev --ignore-scripts
 COPY index.js ./
 COPY api ./api
-COPY --from=web /src/app/build ./app/build
+COPY web ./web
 # compose runs this as the host user so files written to zmk-config stay
 # yours; git then needs a home and to trust the mounted repo.
 ENV HOME=/tmp \

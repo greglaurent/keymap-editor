@@ -8,35 +8,46 @@ your computer. Nothing leaves the machine.
 The Nix flake pins the tools (Node 22, just, git, Docker clients). With
 direnv, `direnv allow`; otherwise `nix develop path:.`.
 
-1. Clone a `zmk-config`\* repo anywhere on your machine.
+1. Clone a `zmk-config` repo anywhere on your machine.
 2. `just setup` creates `.env` from `.env.template`. Set `ZMK_CONFIG_PATH` to
    that repo (default `../zmk-config`, relative to this directory). `PORT`
-   defaults to 8080.
+   defaults to 4710.
 3. `just install`
 
 ## Run
 
-* `just dev`: API plus React dev server. Open `http://localhost:3000`.
-* `just start`: build the app and serve it from the API at
-  `http://localhost:8080`, without Docker.
+* `just start`: the editor at `http://localhost:4710`.
+* `just dev`: the same, restarting the server when code changes.
 * `just up`: the same in Docker (`compose.yaml`), with your zmk-config mounted
   at `/zmk-config`. Set `LOCAL_UID` and `LOCAL_GID` in `.env` to the output of
   `id -u` and `id -g` so saved files stay yours. `just down` stops it and
   `just logs` follows the log.
 
+Pick **Local** as the source. If the page does not look right, make sure no
+older server is still running on the port (`ss -ltnp | grep 4710`).
+
 The server listens on loopback only (the container publishes on
 `127.0.0.1`), so it is not reachable from the network.
 
-\**The editor works using metadata files that describe the layout and keymap of
-the keyboard. This is based on JSON files used by QMK and Keyboard Layout Editor
-with some customization to generated human readable code as well.*
-
 ## Using the editor
 
-Your keyboard is loaded automatically. Click on the top-left corner of a key to
-change its bind behaviour, or in the middle to change the bind parameter.
+This is the upstream Keymap Editor, minus its GitHub integration. All of its
+pages are there: layers, conditional layers, combos, macros and behaviors. Pick
+**Local** as the source, then your keyboard, and use **Save Changes** to write
+the keymap back to your zmk-config repo. From there, build and flash the
+firmware as usual.
 
-See also: [demo video](keymap-editor-demo.mov)
+## How the files are used
 
-Click the _Save Local_ button to save the modified keymap back to your
-zmk-config repo. From here you can build and flash the firmware as usual.
+Inside `<ZMK_CONFIG_PATH>/config/`:
+
+* Each `*.keymap` file is one keyboard, named after the file. The editor parses
+  it with its own parser and writes changes back with its own generator.
+* The layout comes from `config/info.json` if the repo has one. Otherwise it is
+  the bundled layout for the keyboard named like the keymap (`corne.keymap` is
+  a Corne), or the one matching a `shield:` or `board:` in `build.yaml`.
+  An unsupported keyboard shows the editor's "layout generation failed" dialog.
+
+The parser and generator are the upstream's compiled code in `web/`. The server
+runs them in a child process that can read only `web/` and has no network
+access (see `api/services/zmk/keymap-lib.js`).
