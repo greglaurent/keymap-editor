@@ -1,7 +1,6 @@
 const express = require('express')
 const fs = require('fs')
 const path = require('path')
-const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
 
@@ -13,7 +12,7 @@ const app = express()
 
 const { origin } = new URL('http://localhost:3000')
 
-app.use(bodyParser.json())
+app.use(express.json())
 app.use(cors({ origin }))
 
 if (config.ENABLE_DEV_SERVER) {

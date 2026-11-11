@@ -11,12 +11,12 @@ function init (app) {
   const opts = {
     cwd: appDir,
     env: Object.assign({}, process.env, {
-      REACT_APP_API_BASE_URL: API_BASE_URL,
-      REACT_APP_APP_BASE_URL: APP_BASE_URL
+      VITE_API_BASE_URL: API_BASE_URL,
+      VITE_APP_BASE_URL: APP_BASE_URL
     })
   }
 
-  childProcess.execFile('npm', ['start'], opts, err => {
+  childProcess.execFile('npm', ['run', 'dev'], opts, err => {
     console.error(err)
     console.error('Application serving failed')
     process.exit(1)

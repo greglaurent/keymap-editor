@@ -1,6 +1,4 @@
-function env(key) {
-  return process.env[key] || process.env[`REACT_APP_${key}`]
-}
+const env = import.meta.env
 
-export const apiBaseUrl = env('API_BASE_URL') || ''
-export const appBaseUrl = env('APP_BASE_URL')
+export const apiBaseUrl = env.VITE_API_BASE_URL || ''
+export const appBaseUrl = env.VITE_APP_BASE_URL

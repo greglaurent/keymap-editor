@@ -1,6 +1,12 @@
 const path = require('path')
 const process = require('process')
-require('dotenv/config')
+
+// Load .env from the working directory if present (built into Node 22).
+try {
+  process.loadEnvFile()
+} catch (err) {
+  if (err.code !== 'ENOENT') throw err
+}
 
 const PORT = process.env.PORT || 8080
 // Loopback only by default; the Docker image sets 0.0.0.0 (compose publishes

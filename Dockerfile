@@ -3,10 +3,11 @@ FROM node:22-bookworm-slim AS web
 WORKDIR /src/app
 COPY app/package.json app/package-lock.json ./
 RUN npm ci
+COPY app/index.html app/vite.config.js ./
 COPY app/public ./public
 COPY app/src ./src
 # Same origin as the API: an empty base URL makes the app call relative paths.
-ENV REACT_APP_API_BASE_URL=""
+ENV VITE_API_BASE_URL=""
 RUN npm run build
 
 # ---- runtime: the API, which also serves the built app ----

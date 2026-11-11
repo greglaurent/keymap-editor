@@ -17,5 +17,5 @@ Configuration is provided via environment variables, set automatically by
 
 Variable                    | Description
 ----------------------------|-------------
-`REACT_APP_API_BASE_URL`    | URL of the backend API.
-`REACT_APP_APP_BASE_URL`    | URL of _this_ app.
+`VITE_API_BASE_URL`    | URL of the backend API.
+`VITE_APP_BASE_URL`    | URL of _this_ app.
