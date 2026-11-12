@@ -29,10 +29,15 @@ This runs only on your own machine and edits a local zmk-config repo. See
 1. `direnv allow` (or `nix develop path:.`) for the pinned tools.
 2. `just setup`, then set `ZMK_CONFIG_PATH` in `.env`.
 3. `just start` (or `just dev`, which restarts on code changes), or `just up`
-   for Docker. Open `http://localhost:4710`. The port is `PORT` in `.env`.
+   for Docker. Open `http://localhost:4710`. The port is `PORT` in.
 
 Firmware builds are out of scope: commit the saved files and build and flash
 with your usual ZMK setup.
+
+## Origin
+
+This project is a fork of [Keymap Editor](https://github.com/nickcoutsos/keymap-editor)
+by Nick Coutsos, used under the MIT license.
 
 ## License
 
