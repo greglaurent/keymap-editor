@@ -4,17 +4,17 @@
   --selection-rgb: 65,105,225;
 } */
 :root {
-  --theme-light-bg-rgb: 247,243,235;
+  --theme-light-bg-rgb: 246,244,238;
   --theme-light-bg: rgb(var(--theme-light-bg-rgb));
   --theme-light-fg: black;
-  --theme-light-dialog-bg: rgb(242,237,228);
-  --theme-light-dialog-bg-rgb: 242,237,228;
-  --theme-light-key-bg-rgb: 208,196,180;
+  --theme-light-dialog-bg: rgb(240,238,231);
+  --theme-light-dialog-bg-rgb: 240,238,231;
+  --theme-light-key-bg-rgb: 200,197,187;
   --theme-light-key-bg-base: rgb(var(--theme-light-key-bg-rgb));
   --theme-light-key-none-bg-base: rgba(var(--theme-light-key-bg-rgb), 0.35);
-  --theme-light-key-color-rgb: 28,24,20;
+  --theme-light-key-color-rgb: 28,27,24;
   --theme-light-key-color-base: rgb(var(--theme-light-key-color-rgb));
-  --theme-light-key-color-extreme: #1c1814;
+  --theme-light-key-color-extreme: #1c1b18;
   --theme-light-key-color-hover: white;
   --theme-light-code-bg: rgba(0, 0, 0, 0.1);
 
