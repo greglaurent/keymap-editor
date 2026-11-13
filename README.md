@@ -34,11 +34,6 @@ This runs only on your own machine and edits a local zmk-config repo. See
 Firmware builds are out of scope: commit the saved files and build and flash
 with your usual ZMK setup.
 
-## Origin
-
-This project is a fork of [Keymap Editor](https://github.com/nickcoutsos/keymap-editor)
-by Nick Coutsos, used under the MIT license.
-
 ## License
 
 The code in this repo is available under the MIT license. The collection of ZMK
